@@ -2,9 +2,9 @@
  * Created by netanel on 27/02/15.
  */
 angular.module('todomvc')
-  .controller('MainController', function($scope) {
+  .controller('MainController', function($scope, $meteor) {
 
-    $scope.todos = [];
+    $scope.todos = $meteor.collection(Todos);
 
     $scope.newTodo = '';
 
