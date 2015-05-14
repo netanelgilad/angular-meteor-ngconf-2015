@@ -2,7 +2,7 @@
  * Created by netanel on 27/02/15.
  */
 angular.module('todomvc')
-  .controller('MainController', function($scope, $meteor) {
+  .controller('MainController', function($scope, $meteor, TodosManager) {
 
     $scope.todos = $meteor.collection(Todos);
 
@@ -13,7 +13,11 @@ angular.module('todomvc')
         title : $scope.newTodo,
         completed : false
       };
-      $scope.todos.push(todo);
+
+      $scope.error = undefined;
+      TodosManager.addTodo(todo).catch(function(error) {
+        $scope.error = error;
+      });
 
       $scope.newTodo = '';
     };
