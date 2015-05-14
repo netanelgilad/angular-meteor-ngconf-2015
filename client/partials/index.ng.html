@@ -1,6 +1,7 @@
 <section id="todoapp" ng-controller="MainController">
   <p ng-show="error">{{error}}</p>
   <header id="header">
+    <button ng-click="getImageUrl()">Try $http</button>
     <h1>todos</h1>
     <form id="todo-form" ng-submit="addTodo()">
       <input id="new-todo" placeholder="What needs to be done?" ng-model="newTodo" autofocus>
@@ -22,4 +23,8 @@
       </li>
     </ul>
   </section>
+  <div id="image-part" ng-show="imageUrl">
+    <button class="destroy" ng-click="imageUrl = undefined"></button>
+    <img ng-src="{{ imageUrl }}" width="700" height="700">
+  </div>
 </section>

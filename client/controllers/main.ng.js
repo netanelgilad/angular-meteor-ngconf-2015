@@ -2,7 +2,7 @@
  * Created by netanel on 27/02/15.
  */
 angular.module('todomvc')
-  .controller('MainController', function($scope, $meteor, TodosManager) {
+  .controller('MainController', function($scope, $meteor, TodosManager, Data) {
 
     $scope.todos = $meteor.collection(Todos);
 
@@ -25,4 +25,13 @@ angular.module('todomvc')
     $scope.removeTodo = function(index) {
       $scope.todos.splice(index, 1);
     };
+
+    $scope.getImageUrl = function() {
+      $scope.error = undefined;
+      Data.getData().then(function(response) {
+        $scope.imageUrl = response.data;
+      }, function() {
+        $scope.error = 'Failed to get image url from $http';
+      });
+    }
   });
